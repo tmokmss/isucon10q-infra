@@ -12,8 +12,9 @@ vim ~/.ssh/config
 
 Host *
   AddKeysToAgent yes
-  UseKeychain yes
   IdentityFile ~/.ssh/id_ed25519
+
+https://github.com/settings/ssh/new
 
 git clone git@github.com:tmokmss/isucon10q-infra.git
 
@@ -23,6 +24,19 @@ git config --global user.name "tmokmss"
 
 ```
 sudo nginx -s reload
+```
+
+### ssh portforwarding
+
+```sh
+# with bastion (13.0.0.30 to 172.31.6.60)
+ssh -L localhost:8080:172.31.6.60:80 ec2-user@13.0.0.30
+
+# without bastion
+ssh -L localhost:8080:localhost:80 ec2-user@13.0.0.30
+
+# forward multiple ports using alias
+ssh -L localhost:8080:172.31.6.60:80 -L localhost:3306:172.31.6.60:3306 ec2
 ```
 
 ### create MySQL user that one can connect from any cidr
