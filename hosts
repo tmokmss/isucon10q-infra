@@ -8,6 +8,6 @@ ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 ff02::3 ip6-allhosts
 
-172.31.6.101 isu1
-172.31.6.102 isu2
-172.31.6.103 isu3
+172.31.6.60 isu1
+172.31.12.97 isu2
+172.31.0.55 isu3
