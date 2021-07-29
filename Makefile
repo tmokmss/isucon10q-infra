@@ -1,21 +1,21 @@
 init:
-	cp ~/.bashrc ./.bashrc
-	rm ~/.bashrc
+	cp ~/.bashrc ./.bashrc | true
+	rm -f ~/.bashrc
 	ln -s `pwd`/.bashrc ~/.bashrc
-	cp ~/.vimrc ./.vimrc
-	rm ~/.vimrc
+	cp ~/.vimrc ./.vimrc | true
+	rm -f ~/.vimrc
 	ln -s `pwd`/.vimrc ~/.vimrc
-	cp /etc/hosts ./hosts
-	sudo rm /etc/hosts
+	cp /etc/hosts ./hosts | true
+	sudo rm -f /etc/hosts
 	sudo ln -s `pwd`/hosts /etc/hosts
-	cp /etc/nginx/sites-enabled/isuumo.conf ./isuumo.conf
-	sudo rm /etc/nginx/sites-enabled/isuumo.conf
+	cp /etc/nginx/sites-enabled/isuumo.conf ./isuumo.conf | true
+	sudo rm -f /etc/nginx/sites-enabled/isuumo.conf
 	sudo ln -s `pwd`/isuumo.conf /etc/nginx/sites-enabled/isuumo.conf
-	cp /etc/nginx/nginx.conf ./nginx.conf
-	sudo rm /etc/nginx/nginx.conf
+	cp /etc/nginx/nginx.conf ./nginx.conf | true
+	sudo rm -f /etc/nginx/nginx.conf
 	sudo ln -s `pwd`/nginx.conf /etc/nginx/nginx.conf
-	cp /etc/mysql/mysql.conf.d/mysqld.cnf ./my.cnf
-	sudo rm /etc/mysql/mysql.conf.d/mysqld.cnf
+	cp /etc/mysql/mysql.conf.d/mysqld.cnf ./my.cnf | true
+	sudo rm -f /etc/mysql/mysql.conf.d/mysqld.cnf
 	sudo ln -s `pwd`/my.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
 apply:
 	source ~/.bashrc
