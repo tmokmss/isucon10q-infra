@@ -21,4 +21,5 @@ init:
 apply:
 	source ~/.bashrc
 	sudo nginx -s reload
+apply_db:
 	sudo service mysql restart
