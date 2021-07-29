@@ -6,6 +6,9 @@ init:
 	cp ~/.vimrc ./.vimrc | true
 	rm -f ~/.vimrc
 	ln -s `pwd`/.vimrc ~/.vimrc
+	cp /etc/inputrc ./.inputrc | true
+	rm -f ~/.inputrc
+	ln -s `pwd`/.inputrc ~/.inputrc
 	cp /etc/nginx/sites-enabled/isuumo.conf ./isuumo.conf | true
 	sudo rm -f /etc/nginx/sites-enabled/isuumo.conf
 	sudo ln -s `pwd`/isuumo.conf /etc/nginx/sites-enabled/isuumo.conf
@@ -17,6 +20,7 @@ init:
 	sudo ln -s `pwd`/mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
 apply:
 	source ~/.bashrc
+	bind -f ~/.inputrc
 	sudo nginx -s reload
 apply_db:
 	sudo service mysql restart
