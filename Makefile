@@ -14,9 +14,9 @@ init:
 	cp /etc/nginx/nginx.conf ./nginx.conf | true
 	sudo rm -f /etc/nginx/nginx.conf
 	sudo ln -s `pwd`/nginx.conf /etc/nginx/nginx.conf
-	cp /etc/mysql/mysql.conf.d/mysqld.cnf ./my.cnf | true
+	cp /etc/mysql/mysql.conf.d/mysqld.cnf ./myqld.cnf | true
 	sudo rm -f /etc/mysql/mysql.conf.d/mysqld.cnf
-	sudo ln -s `pwd`/my.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
+	sudo ln -s `pwd`/mysqld.cnf /etc/mysql/mysql.conf.d/mysqld.cnf
 apply:
 	source ~/.bashrc
 	sudo nginx -s reload
