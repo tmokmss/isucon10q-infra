@@ -1,3 +1,4 @@
+SHELL=/bin/bash
 init:
 	cp ~/.bashrc ./.bashrc | true
 	rm -f ~/.bashrc
