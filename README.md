@@ -14,7 +14,8 @@ Host *
   AddKeysToAgent yes
   IdentityFile ~/.ssh/id_ed25519
 
-https://github.com/settings/ssh/new
+# register ssh key
+# https://github.com/settings/ssh/new
 
 git clone git@github.com:tmokmss/isucon10q-infra.git
 
@@ -22,9 +23,37 @@ git config --global user.email "email@example.com"
 git config --global user.name "tmokmss"
 ```
 
+### setup other servers
 ```
-sudo nginx -s reload
+# add ssh key above to `~/.ssh/authorized_keys`
+# setup /etc/hosts
+
+scp /home/isucon/.ssh/config isu2:~/.ssh
+scp /home/isucon/.ssh/id_ed25519* isu2:~/.ssh
 ```
+
+### setup alp
+```
+cd ~/
+wget https://github.com/tkuchiki/alp/releases/download/v1.0.6/alp_linux_amd64.zip
+unzip alp_linux_amd64.zip
+sudo install alp /usr/local/bin/alp
+rm alp*
+
+sudo cat /var/log/nginx/access.log | alp ltsv -m "/api/chair/buy/.+","/api/estate/req_doc/.+","/api/chair/\d+","/api/recommended_estate/.+","/api/estate/\d+"
+```
+
+### log
+```
+sudo chmod -R 777 /var/log/mysql
+sudo chmod -R 777 /var/log/nginx
+
+journalctl -u isuumo.ruby
+
+stackprof tmp/stackprof-cpu-*
+stackprof tmp/stackprof-cpu-* --method "block in <class:App>"
+```
+
 
 ### ssh portforwarding
 
