@@ -32,6 +32,28 @@ scp /home/isucon/.ssh/config isu2:~/.ssh
 scp /home/isucon/.ssh/id_ed25519* isu2:~/.ssh
 ```
 
+### disable apparmor
+```
+sudo apparmor_status
+ls /etc/apparmor.d/
+sudo ln -s /etc/apparmor.d/usr.sbin.mysqld /etc/apparmor.d/disable/
+sudo apparmor_parser -R /etc/apparmor.d/disable/usr.sbin.mysqld
+```
+
+### possible log locations
+```
+sudo less /var/log/syslog
+sudo less /var/log/mysql
+sudo less /var/log/nginx
+journalctl -u isuumo.ruby -f
+journalctl -xe
+```
+
+### check mysql version
+```
+SHOW VARIABLES LIKE ‘%version%’;
+```
+
 ### setup alp
 ```
 cd ~/
@@ -41,6 +63,12 @@ sudo install alp /usr/local/bin/alp
 rm alp*
 
 sudo cat /var/log/nginx/access.log | alp ltsv -m "/api/chair/buy/.+","/api/estate/req_doc/.+","/api/chair/\d+","/api/recommended_estate/.+","/api/estate/\d+"
+```
+
+### setup pt-query-digest
+```
+sudo apt install percona-toolkit
+sudo pt-query-digest /var/log/mysql/mysql-slow.log  | less
 ```
 
 ### log
