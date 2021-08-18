@@ -8,3 +8,7 @@ echo ''
 read -p "show disk... " nil
 df -h
 
+echo ''
+read -p "show mysql version... " nil
+mysql --version
+
