@@ -40,15 +40,6 @@ sudo ln -s /etc/apparmor.d/usr.sbin.mysqld /etc/apparmor.d/disable/
 sudo apparmor_parser -R /etc/apparmor.d/disable/usr.sbin.mysqld
 ```
 
-### possible log locations
-```
-sudo less /var/log/syslog
-sudo less /var/log/mysql
-sudo less /var/log/nginx
-journalctl -u isuumo.ruby -f
-journalctl -xe
-```
-
 ### check mysql version
 ```
 SHOW VARIABLES LIKE ‘%version%’;
@@ -76,6 +67,12 @@ sudo pt-query-digest /var/log/mysql/mysql-slow.log  | less
 sudo chmod -R 777 /var/log/mysql
 sudo chmod -R 777 /var/log/nginx
 
+sudo less /var/log/syslog
+sudo less /var/log/mysql
+sudo less /var/log/nginx
+
+journalctl -u isuumo.ruby -f
+journalctl -xe
 journalctl -u isuumo.ruby
 
 stackprof tmp/stackprof-cpu-*
